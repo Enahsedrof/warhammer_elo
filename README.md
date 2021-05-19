@@ -37,3 +37,38 @@ Integration Testing -	Selenium
 Front End - 		HTML & CSS
 DB - 			MySQL
 Cloud - 		GCL
+
+
+
+SQL -
+
+Table one : used to store info on players
+
+id
+new_elo
+wins
+loses
+alliance
+name
+
+Table 2 : used to update ELO based on match result
+
+Opponent1
+Opponent2
+OP1_result
+OP2_result
+Update new_elo for both players,
+old_elo
+
+ELO is calculated based on who is predicted to win. If both players are evenly matched, they will get +- 10 points for a win/lose.
+For the initial task every player will be assumed to be evenly matched.
+Moving forward a more robust system for ELO can be used, e.g. a 2000 rated player vs an 1000 rated player would be a +1 or -20 for the 2000 player. Reversing for the 1000 player.
+
+Next steps to improve on would be
+- ranking every player and displaying that on a table. 
+- Sorting by alliance and ranking within alliance
+- Seperate ELO if a different alliance was used 
+- Take into account Major/minor win/lose and secondaries 
+- Table to represent events and the matches played therein
+- Begin the absurd task of understanding the mathematcial function that is used for ELO.
+- a function to enter two players and produce a predicted match result
