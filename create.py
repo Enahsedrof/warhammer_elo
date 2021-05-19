@@ -3,10 +3,10 @@ from app import db, Players
 db.drop_all()
 db.create_all()
 
-Stephen = Users(id= 1,new_elo = 1500, wins = 4, loses =1, alliance = "Seraphon", name = "Stephen") # Extra: this section populates the table with an example entry
-Colin = Users(id= 2,new_elo = 1600, wins = 5, loses =0, alliance = "Daughters of Khaine", name = "Colin")
-Neil = Users(id= 3,new_elo = 1400, wins = 6, loses =4, alliance = "Slaanesh", name = "Neil")
-David = Users(id= 4,new_elo = 800, wins = 1, loses =9, alliance = "Vampires", name = "David")
+Stephen = Players(id =1 ,name = "Stephen", alliance = "Seraphon", current_rating = 1000 ) 
+Colin = Players(id = 2,name = "Colin", alliance = "Daughters of Khaine", current_rating = 900 )
+Neil = Players(id = 3,name = "Neil", alliance = "Slaanesh", current_rating = 1100 )
+David = Players(id = 4,name = "David", alliance = "Vampires", current_rating = 1200 )
 
 db.session.add(Stephen)
 db.session.add(Colin)
