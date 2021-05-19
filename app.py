@@ -15,6 +15,11 @@ class Players(db.Model):
     alliance = db.Column(db.String(30), nullable=False)
     current_rating = db.Column(db.Integer, nullable=False)
 
+@app.route("/")
+def index():
+    player_list = Players.query.all()
+    return render_template("index.html", player_list=player_list)
+
     # new_elo = db.Column(db.Float, nullable=False)
     # wins = db.Column(db.Integer, nullable=False)
     # loses = db.Column(db.Integer, nullable=False)
