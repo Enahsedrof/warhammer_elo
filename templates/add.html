@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name}}
+    <br>
+    {{ form.alliance.label }} {{ form.alliance}}
+    <br>
+    {{ form.current_rating.label }} {{ form.current_rating}}
+    {{ form.submit}}
+</form>
+
+{% endblock body %}
