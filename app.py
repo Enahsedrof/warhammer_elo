@@ -24,7 +24,7 @@ class PlayersForm(FlaskForm):
 
 @app.route("/")
 def index():
-    player_list = Players.query.all()
+    player_list = Players.query.order_by(Players.current_rating.desc()).all()
     return render_template("index.html", player_list=player_list)
 
 @app.route("/add", methods=["POST","GET"])
@@ -37,10 +37,17 @@ def add():
         return redirect(url_for("index"))
     return render_template("add.html", form=form)
 
-@app.route("/update/<int:players_id>", methods=["POST","GET"])
+@app.route("/win/<int:players_id>", methods=["POST","GET"])
 def update(players_id):
     players = Players.query.filter_by(id=players_id).first()
-    players.current_rating = not todo.complete
+    players.current_rating =  players.current_rating + 15
+    db.session.commit()
+    return redirect(url_for("index"))
+
+@app.route("/delete/<int:players_id>", methods=["POST","GET"])
+def delete(players_id):
+    players = Players.query.filter_by(id=players_id).first()
+    db.session.delete(players)
     db.session.commit()
     return redirect(url_for("index"))
 
