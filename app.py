@@ -15,7 +15,14 @@ class Players(db.Model):
     name = db.Column(db.String(30), nullable=False)
     alliance = db.Column(db.String(30), nullable=False)
     current_rating = db.Column(db.Integer, nullable=False)
+    games = db.relationship('Games', backref= 'players')
+    
 
+class Games(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    game_type = db.Column(db.String(30), nullable =False)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
+    
 class PlayersForm(FlaskForm):
     name = StringField("Player name")
     alliance = StringField("Player alliance")
@@ -37,12 +44,15 @@ def add():
         return redirect(url_for("index"))
     return render_template("add.html", form=form)
 
-@app.route("/win/<int:players_id>", methods=["POST","GET"])
+@app.route("/update/<int:players_id>", methods=["POST","GET"])
 def update(players_id):
-    players = Players.query.filter_by(id=players_id).first()
-    players.current_rating =  players.current_rating + 15
+    new_rating = Players.query.first()
+    new_rating.current_rating = 1000
     db.session.commit()
     return redirect(url_for("index"))
+
+
+   
 
 @app.route("/delete/<int:players_id>", methods=["POST","GET"])
 def delete(players_id):
