@@ -2,6 +2,15 @@
 
 {% block body %}
 
-<p>This has updated the name due to copyright</p>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    {{ form.name.label }} {{ form.name}}
+    <br>
+    {{ form.alliance.label }} {{ form.alliance}}
+    <br>
+    {{ form.current_rating.label }} {{ form.current_rating}}
+    {{ form.submit}}
+</form>
+
 
 {% endblock body %}
