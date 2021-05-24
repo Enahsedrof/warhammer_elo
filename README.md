@@ -36,7 +36,7 @@ Pictured below is the continuous integration pipeline. While the live project co
 Allowing for only stable versions of the app to be pushed to deployment.
 
 
-![image](pipeline.png)
+![image](pipeline.PNG)
 
 Jenkins in the flesh, however it is broken currently.
 
