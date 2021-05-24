@@ -48,8 +48,7 @@ def update(players_id):
     new_rating = Players.query.filter_by(id=players_id).first()
     new_rating.current_rating = 1000
     db.session.commit()
-    return "ID" + new_rating.name 
-    # return redirect(url_for("index"))
+    return redirect(url_for("index"))
 
 @app.route("/delete/<int:players_id>", methods=["POST","GET"])
 def delete(players_id):
