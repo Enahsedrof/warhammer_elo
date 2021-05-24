@@ -25,7 +25,7 @@ Further down the line as my own project there will be:
 
 Entity relation diagram(ERD) showing the structure of the database. The table with a red outline was not implemented into the app yet.
 
-![image](ERD.png)
+![image](erd.png)
 
 The Games table providing a one to many relationship with players. One game type can account for many players using that system for their games.
 
