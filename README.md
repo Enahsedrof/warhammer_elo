@@ -46,7 +46,7 @@ Jenkins in the flesh, however it is broken currently.
 
 Jira and a kanban board were used to track the progress. The board was designed to delegate smaller tasks and in a step by step build up to a functional app. These were also organised via the type of task like debug etc.
 
-![image](Jira.png)
+![image](jira.png)
 
 Above is an early snapshot of the progress.
 
