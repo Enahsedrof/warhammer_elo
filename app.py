@@ -17,7 +17,6 @@ class Players(db.Model):
     current_rating = db.Column(db.Integer, nullable=False)
     games = db.relationship('Games', backref= 'players')
     
-
 class Games(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     game_type = db.Column(db.String(30), nullable =False)
@@ -52,16 +51,12 @@ def update(players_id):
     return "ID" + new_rating.name 
     # return redirect(url_for("index"))
 
-
-   
-
 @app.route("/delete/<int:players_id>", methods=["POST","GET"])
 def delete(players_id):
     players = Players.query.filter_by(id=players_id).first()
     db.session.delete(players)
     db.session.commit()
     return redirect(url_for("index"))
-
 
 if __name__ == "__main__":
     app.run(debug=True, host = '0.0.0.0')

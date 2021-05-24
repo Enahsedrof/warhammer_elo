@@ -1,74 +1,92 @@
-ELO calculator (for warhammer)
-
-** Inspired by this site ** http://aligulac.com/
-This is very extensive but I would like to build from the ground up a similiar platform but for competitive tabletop gaming,
-Very simply I will make up a handful of players and record fake matches to track their rating.
-Once I have achieved that I will get the programming done and push out the frontend.
-Finishing that I will then scale it up with real tournaments and people. (This is also a personal project so will be done even after the acad)
-There is a website with results and look to pull results from that site.
-Scale it up and record several years worth of data
-Cry in sleep after that part is finished.
-
-SQL database
-- players and game results
-- updates ELO based on results added
-- run on Google cloud
-- Start small and then worry about upscaling and adding features like recorded events and Faction played
-
-HTML
-- table showing ELO
-- Compares 2 players and predicted result
-- Allows matches to be entered??
--
-
-Python
-- runs the site
-- implement results into DB
+### ELO calculator (for warhammer)
 
 
+ Inspired by this site - http://aligulac.com/
+This is very extensive but I would like to build from the ground up a similiar platform but for competitive tabletop gaming.
 
-Project Management - 	JIRA
-CI - 			Github
-Programming - 		Python
-Version control - 	git
-CI Server - 		Jenkins
-Unit Testing -		pytest
-Integration Testing -	Selenium
-Front End - 		HTML & CSS
-DB - 			MySQL
-Cloud - 		GCL
+I was tasked with making a CRUD application on the web using various tools and technologies to implement it. 
+
+The overall idea of the app is to:
+
+* Table of players ranked by rating created
+* Allow players to be added or removed from the table
+* Allow rating to be reset
+
+Further down the line as my own project there will be:
+
+* Predictive result based on rating
+* Record of wins and loses by alliance
+* A more robust ELO calculation based on a very scary math equation
+* API to pull from a table of results posted online
+
+### Design
+
+## Database 
+
+Entity relation diagram(ERD) showing the structure of the database. The table with a red outline was not implemented into the app yet.
+
+![image](ERD.png)
+
+The Games table providing a one to many relationship with players. One game type can account for many players using that system for their games.
+
+### CI pipeline
+
+Pictured below is the continuous integration pipeline. While the live project connects to the SQL server on GCP it does not however build from the jenkins server just yet. The intetntion being that code can be produced on a local code and pushed to github. In turn automatically pushing to the jenkins server where testing and reports would be done automatically.
+
+Allowing for only stable versions of the app to be pushed to deployment.
 
 
+![image](pipeline.png)
 
-SQL -
+Jenkins in the flesh, however it is broken currently.
 
-Table one : used to store info on players
+![image](jenkins.png)
 
-id
-new_elo
-wins
-loses
-alliance
-name
+### Project Tracking
 
-Table 2 : used to update ELO based on match result
+Jira and a kanban board were used to track the progress. The board was designed to delegate smaller tasks and in a step by step build up to a functional app. These were also organised via the type of task like debug etc.
 
-Opponent1
-Opponent2
-OP1_result
-OP2_result
-Update new_elo for both players,
-old_elo
+![image](Jira.png)
 
-ELO is calculated based on who is predicted to win. If both players are evenly matched, they will get +- 10 points for a win/lose.
-For the initial task every player will be assumed to be evenly matched.
-Moving forward a more robust system for ELO can be used, e.g. a 2000 rated player vs an 1000 rated player would be a +1 or -20 for the 2000 player. Reversing for the 1000 player.
+Above is an early snapshot of the progress.
 
-Next steps to improve on would be
-- ranking every player and displaying that on a table. 
-- Sorting by alliance and ranking within alliance
-- Seperate ELO if a different alliance was used 
-- Take into account Major/minor win/lose and secondaries 
-- Table to represent events and the matches played therein
-- Begin the absurd task of understanding the mathematcial function that is used for ELO.
-- a function to enter two players and produce a predicted match result
+### Risk
+
+![image](risk.png)
+
+A quick screenshot, initially I had everything but the traffic monitoring. Upon reviewing the example report I then realised it was also a risk given the use of HTTP. It should be noted that at this point in the app no sensitive information is required.
+
+### Testing
+
+![image](pytest_cov.png)
+
+As can be seen the coverage is quite poor. Time constraints and last minute fixes to some functions. Integration testing was not done as I could not get the systems in place to run nevermind testing.
+
+### Front End
+
+![image](front.png)
+
+A snippet of the front end user page that sorts the player by rating to give a dummy rankings page.
+
+Please excuse my use of dark mode!
+
+### Known issues
+
+Going forward : 
+
+* extensive testing done throught the app
+* Jenkins building and integration testing done
+* Currently can only reset player ELO if you know their ID.
+
+
+### The Future
+
+As this is a hobby project beyond QA training these things would be implemented:
+
+* Predictive match results
+* Players win and lose records
+* Sort by best in Alliance
+* Update player ELO by a value based on the ELO calculation for win/lose
+* API to pull from a website containing all the matches played at an event - cuts down on manual data entry.
+
+### Brought to you by Shane
